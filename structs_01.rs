@@ -1,40 +1,23 @@
-extern crate itertools;
-extern crate rand;
-
-use itertools::Itertools;
-use rand::Rng;
-
-#[derive(Debug)]
+/// Suits in a standard deck
 enum Suit {
-    Spade,
-    Club,
     Heart,
+    Spade,
     Diamond,
+    Club,
 }
 
-#[derive(Debug)]
+/// Representation of a playing card
 struct Card {
     suit : Suit,
     rank : usize,
 }
 
-#[derive(Debug)]
-struct Deck {
-    cards : Vec<Card>,
-}
-
-impl Deck {
-    fn new() -> Deck {
-        let cards = iproduct!(1..13, vec![Spade, Club, Heart, Diamond])
-                    .map(|rank, suit| Card{rank, suit}).to_vec();
-        Deck {cards}
-    }
-}
 
 fn main() {
-    let _ = Vec::<Card>::new();
+    let favourite_hand = [
+        Card{suit: Suit::Spade, rank: 9},
+        Card{suit: Suit::Spade, rank: 10},
+    ];
 
-    let deck = Deck::new();
-
-    println!("{:?}", deck);
+    println!("{}", favourite_hand[0].rank);
 }
