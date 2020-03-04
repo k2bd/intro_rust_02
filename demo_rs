@@ -1,4 +1,4 @@
-#!/home/k2bd/.edm/envs/lnl/bin/python
+#!/Users/kduff/.edm/envs/lnl/bin/python
 
 import os
 import sys
