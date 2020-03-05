@@ -28,18 +28,18 @@ impl Rectangle {
 }
 
 /// Defines a 2D shape with an area
-trait Area {
+trait Shape2D {
     /// The area of the shape in 2D
     fn area(&self) -> f64;
 }
 
-impl Area for Rectangle {
+impl Shape2D for Rectangle {
     fn area(&self) -> f64 {
         self.width() * self.height()
     }
 }
 
-impl Area for Circle {
+impl Shape2D for Circle {
     fn area(&self) -> f64 {
         std::f64::consts::PI * self.radius * self.radius
     }
@@ -47,14 +47,14 @@ impl Area for Circle {
 
 /// Prints the first of the two shapes in debug mode and then returns the
 /// absolute difference in area between two shapes
-fn area_diff_1(shape1: &(impl Area + Debug), shape2: &impl Area) -> f64 {
+fn area_diff_1(shape1: &(impl Shape2D + Debug), shape2: &impl Shape2D) -> f64 {
     println!("The first shape is {:?}", shape1);
     (shape1.area() - shape2.area()).abs()
 }
 
 /// Prints the first of the two shapes in debug mode and then returns the
 /// absolute difference in area between two shapes, using trait bounds
-fn area_diff_2<T: Debug + Area, U: Area>(shape1: &T, shape2: &U) -> f64 {
+fn area_diff_2<T: Debug + Shape2D, U: Shape2D>(shape1: &T, shape2: &U) -> f64 {
     println!("The first shape is {:?}", shape1);
     (shape1.area() - shape2.area()).abs()
 }
@@ -63,8 +63,8 @@ fn area_diff_2<T: Debug + Area, U: Area>(shape1: &T, shape2: &U) -> f64 {
 /// absolute difference in area between two shapes, using clean trait bounds
 /// with `where`
 fn area_diff_3<T, U>(shape1: &T, shape2: &U) -> f64 
-        where T: Debug + Area,
-              U: Area {
+        where T: Debug + Shape2D,
+              U: Shape2D {
     println!("The first shape is {:?}", shape1);
     (shape1.area() - shape2.area()).abs()
 }

@@ -17,7 +17,6 @@ fn main() {
     // Not necessary to specify the type of the Vec as Card
     let mut deck = Vec::<Card>::new();
 
-    // Q: What happens if we reverse the double loop?
     for rank in 1..14 {
         for suit in vec![Suit::Heart, Suit::Spade, Suit::Diamond, Suit::Club] {
             // Note: we don't need to write `{rank: rank, suit: suit}` because
@@ -25,7 +24,8 @@ fn main() {
             deck.push(Card::Standard{rank, suit});
         }
     }
-
+    // Q: What happens if we reverse the double loop?
+    
     for _ in 0..2 {
         deck.push(Card::Joker);
     }

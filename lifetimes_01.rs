@@ -6,7 +6,7 @@ struct EssayInfo<'a> {
 
 fn main() {
     let essay = String::from(
-        "My Great Story\n\
+        "My Cool Story\n\
         By Kevin\n\
         \n\
         Once upon a time there was a great wizard...");

@@ -25,21 +25,32 @@ impl Rectangle {
     }
 }
 
-/// Defines a 2D shape with an area
-trait Area {
+/// Defines a 2D shape
+trait Shape2D {
     /// The area of the shape in 2D
     fn area(&self) -> f64;
+
+    /// The perimeter of the shape
+    fn perimeter(&self) -> f64;
 }
 
-impl Area for Rectangle {
+impl Shape2D for Rectangle {
     fn area(&self) -> f64 {
         self.width() * self.height()
     }
+
+    fn perimeter(&self) -> f64 {
+        2.0 * self.width() + 2.0 * self.height()
+    }
 }
 
-impl Area for Circle {
+impl Shape2D for Circle {
     fn area(&self) -> f64 {
         std::f64::consts::PI * self.radius * self.radius
+    }
+
+    fn perimeter(&self) -> f64 {
+        2.0 * std::f64::consts::PI * self.radius
     }
 }
 
@@ -51,6 +62,7 @@ fn main() {
     println!("Rectangle is {:?}", rect);
     println!("Rectangle is {}m by {}m", rect.width(), rect.height());
     println!("Rectangle is {}m²", rect.area());
+    println!("Rectangle's perimeter is is {}m", rect.perimeter());
     
     let circle = Circle{
         center : Point(0.0, 0.0),
@@ -58,4 +70,5 @@ fn main() {
     };
     println!("Circle is {:?}", circle);
     println!("Circle is {}m²", circle.area());
+    println!("Circle's perimeter is is {}m", circle.perimeter());
 }

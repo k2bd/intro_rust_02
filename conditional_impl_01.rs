@@ -6,6 +6,9 @@ struct Pair<T> {
 }
 
 impl<T> Pair<T> {
+
+    // Could also be:
+    // fn new(x: T, y: T) -> Pair<T> {
     fn new(x: T, y: T) -> Self {
         Self {x, y}
     }
