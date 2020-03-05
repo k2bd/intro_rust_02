@@ -1,5 +1,6 @@
 extern crate rand;
 
+use std::ops::{Deref, DerefMut};
 use rand::prelude::*;
 
 /// Suits in a standard deck
@@ -51,7 +52,7 @@ impl Deck {
     /// * `rng` - Mutable reference to Rng for the shuffle
     fn shuffle_inplace(&mut self, mut rng: &mut impl rand::Rng) {
         // Vec.shuffle is provided by the rand crate
-        self.0.shuffle(&mut rng);
+        self.shuffle(&mut rng);
     }
 
     /// Draw cards, removing them from the deck
@@ -65,12 +66,31 @@ impl Deck {
             // Note that because Deck is a tuple struct we need to reference
             // the 0'th element. We can fix this later.
             hand.push(
-                self.0.pop()
-                      .expect("No more cards in the deck!")
+                self.pop()
+                    .expect("No more cards in the deck!")
             );
         }
 
         hand
+    }
+}
+
+impl Deref for Deck {
+    type Target = Vec<Card>;
+
+    // Could be:
+    // fn deref_mut(&mut self) -> &Self::Target {
+    fn deref(&self) -> &Vec<Card> {
+        &self.0
+    }
+}
+
+impl DerefMut for Deck {
+
+    // Could be:
+    // fn deref_mut(&mut self) -> &mut Self::Target {
+    fn deref_mut(&mut self) -> &mut Vec<Card> {
+        &mut self.0
     }
 }
 
@@ -85,11 +105,5 @@ fn main() {
 
     println!("Hand: {:?}", hand);
 
-    // Unfortunately we've lost the ability to do this:
-    //println!("There are {} cards in the deck.", deck.len());
-
-    // We can do this instead, for now.
-    println!("There are {} cards in the deck.", deck.0.len());
-
-    // We could also implement a method called len, but there must be a better way 🤔
+    println!("There are {} cards in the deck.", deck.len());
 }

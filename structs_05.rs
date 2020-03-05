@@ -1,14 +1,8 @@
-enum Gender {
-    Male,
-    Female,
-    Other(String),
-}
-
 /// Information relating to a person
 struct Person {
     first_name : String,
     last_name : String,
-    gender : Gender,
+    gender : String,
     age : usize,
     home_address : String,
     home_phone_number : String,
@@ -19,7 +13,7 @@ fn main() {
     let father = Person {
         first_name : String::from("John"),
         last_name : String::from("Smith"),
-        gender : Gender::Male,
+        gender : String::from("M"),
         age : 55,
         home_address : String::from(
             "3rd floor, Broers Building,\n21 JJ Thomson Ave,\nCambridge CB3 0FA"
@@ -30,7 +24,7 @@ fn main() {
 
     let daughter = Person {
         first_name : String::from("Jane"),
-        gender : Gender::Female,
+        gender : String::from("F"),
         age : 20,
         ..father
     };

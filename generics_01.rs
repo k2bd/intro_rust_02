@@ -9,7 +9,7 @@ struct Point(f64, f64);
 struct Rectangle(Point, Point);
 
 /// A circle
-#[derive(Debug)]
+// N.B. Removed Debug
 struct Circle {
     center : Point,
     radius : f64,
@@ -81,6 +81,7 @@ fn main() {
         radius : 8.88,
     };
 
+    // Because in this example Circle is not Debug, we couldn't swap these two
     println!("The difference in areas is {:?}", area_diff_1(&rect, &circle));
     println!("The difference in areas is {:?}", area_diff_2(&rect, &circle));
     println!("The difference in areas is {:?}", area_diff_3(&rect, &circle));

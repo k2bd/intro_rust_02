@@ -43,10 +43,12 @@ impl Deck {
     }
 }
 
-
+// See also: std::ops::DerefMut
 impl Deref for Deck {
     type Target = Vec<Card>;
 
+    // Signature could be written as:
+    //fn deref(&self) -> &Self::Target {
     fn deref(&self) -> &Vec<Card> {
         &self.0
     }
